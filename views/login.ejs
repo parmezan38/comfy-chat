@@ -1,0 +1,32 @@
+<%include partials/header%>
+<div class="container">
+    <div id="main-container" class="jumbotron">
+        <div class="container mid">
+            <h2 class="text-center">Log in</h2>
+            <form action="/login" method="POST">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Username</span>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="username" placeholder="username" required>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Password</span>
+                    </div>
+                    <input type="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="password" placeholder="password" required>
+                </div>
+                <div class="text-center"> 
+                    <button type="submit" class="btn btn-primary mb-2">Login!</button>
+                </div>
+            </form>
+            <hr class="my-4">
+            <div class="text-center"> 
+                <form action="/" action="/" method="GET">
+                    <button class="btn btn-primary mb-2">Back to Login Page</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<%include partials/footer%>

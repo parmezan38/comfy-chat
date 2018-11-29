@@ -1,0 +1,47 @@
+<%include partials/header%>
+<div class="container">
+    <div id="main-container" class="jumbotron">
+        <h1 class="display-4 text-center">Welcome to Comfy Chat</h1>
+        <p class="lead">
+            Comfy Chat is a simple chat site that has chat rooms with small number od users in them.
+            Messages have a limited number of characters to avoid large swaths of text. 
+            Comfy Chat uses NoSpyAcc for user accounts, which are non-crucial, spying free, reusable anonymous accounts.
+        </p>
+        <hr class="my-4">
+        <div class="container mid">
+            <%if(userInfo) {%>
+                <div class="text-center">
+                    <h2>Go to Chat Lobby</h2>
+                    <a class="btn btn-primary mb-2" href="/chat" role="button">Chat Lobby</a>
+                </div>
+            <%} else {%>
+                <h2 class="text-center">Go to Chat Lobby</h2>
+                <form action="/login" method="POST">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Username</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="username" placeholder="username" required>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Password</span>
+                        </div>
+                        <input type="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="password" placeholder="password" required>
+                    </div>
+                    <div class="text-center"> 
+                        <button type="submit" class="btn btn-primary btn-lg">Login!</button>
+                    </div>
+                </form>
+            <%}%>            
+        </div>
+        <hr class="my-4">
+        <div class="container mid">
+            <div class="text-center">
+                <h2>Create new NoSpyAcc account</h2>
+                <a class="btn btn-primary mb-2" href="/new" role="button">Create New</a>
+            </div>
+        </div>
+    </div>
+</div>
+<%include partials/footer%>
