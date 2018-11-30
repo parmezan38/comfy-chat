@@ -1,5 +1,5 @@
 let rooms = document.getElementById('rooms');
-setTimeout('location.reload(true);', 5000);
+//setTimeout('location.reload(true);', 5000);
 
 function showLobby(root) {
     while (rooms.firstChild) {
@@ -15,7 +15,7 @@ function showLobby(root) {
     lobbySorted.forEach(room => {
         let li = document.createElement('li');
         let classAtt = document.createAttribute('class');
-        li.innerHTML = room.name + ' - Users: ' + room.users.length + '/' + room.maxUsers;
+        li.innerHTML = '<span><strong>' + room.name + ' - Users: ' + room.users.length + '/' + room.maxUsers + '</strong></span>';
         
         if (room.users.length < room.maxUsers){
             // Avaliable Link

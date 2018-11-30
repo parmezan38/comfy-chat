@@ -16,6 +16,20 @@ body {
     padding-top: 8px;
     padding-bottom: 8px;
 }
+#rooms {
+    width: 50%;
+}
+#rooms span {
+    width: 100%;
+    max-width: 250px;
+    padding: 0% 8% 0% 8%;
+    text-align: center;
+}
+#rooms .btn {
+    float: right;
+    width: 100%;
+    max-width: 150px;
+}
 #color-combination {
     width: 3.5em;
     height: 3.5em;
