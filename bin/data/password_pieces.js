@@ -1,8 +1,8 @@
-let passwordGenerator = {};
+let passwordData = {};
 // RANDOM PASSWORD GENERATOR
-passwordGenerator.password = "";
+passwordData.password = "";
 // Name Library Temlate
-passwordGenerator.nameLib = [
+passwordData.nameLib = [
     [
         "Big", "Small", "Huge", "Tiny", "Long"
     ],
@@ -14,4 +14,4 @@ passwordGenerator.nameLib = [
         "Duck", "Car", "Truck", "Goat", "Dog", "Fire", "Sun", "Phone", "Web", "Planet", "Word", "Soda", ""
     ]
 ];
-module.exports = passwordGenerator;
+module.exports = passwordData;

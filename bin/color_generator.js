@@ -6,12 +6,11 @@ const   hue = { min: 0, max: 360 },
 colorGenerator.generateColor = function(){
     let colors = { color1: '', color2: '' };
     // Generate Primary and Secondary Hues     
-    let primaryHue = colorGenerator.generateValue(hue);
-    let secondaryHue = primaryHue + 180 + (Math.round(Math.random()) * 10 - 20);
-    if(secondaryHue > 360){ secondaryHue -= 360 };
+    let primaryHue = this.generateValue(hue);
+    let secondaryHue = (primaryHue + 180 + (Math.round(Math.random()) * 10 - 20) ) % 360;
     // Add Saturation and Lighness
-    colors.color1 += 'h' + primaryHue + 's' + colorGenerator.generateValue(sat) + 'l' + colorGenerator.generateValue(lig);
-    colors.color2 += 'h' + secondaryHue + 's' + colorGenerator.generateValue(sat) + 'l' + colorGenerator.generateValue(lig);
+    colors.color1 += 'h' + primaryHue + 's' + this.generateValue(sat) + 'l' + this.generateValue(lig);
+    colors.color2 += 'h' + secondaryHue + 's' + this.generateValue(sat) + 'l' + this.generateValue(lig);
     return colors;
 }
 colorGenerator.generateValue = function(property){

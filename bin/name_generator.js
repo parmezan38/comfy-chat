@@ -1,37 +1,37 @@
-const nameGenerator = require('./data/name_pieces');
+const nameData = require('./data/name_pieces');
 const db = require('../models/index');
-
+const nameGenerator = {};
 // Generate Function
 nameGenerator.name = null;
 nameGenerator.generateNameAndCheckIfExists = function(){
-    return nameGenerator.findIfNameExistsInDB(nameGenerator.generateName()).then(doesExist => {
+    return this.findIfNameExistsInDB(this.generateName()).then(doesExist => {
         if(doesExist){
-            nameGenerator.name = null;
-            return nameGenerator.generateNameAndCheckIfExists();
+            this.name = null;
+            return this.generateNameAndCheckIfExists();
         } else {
-            return nameGenerator.name;
+            return this.name;
         }
     });
 }
 nameGenerator.generateName = function(){
-    nameGenerator.name = '';
-    let randPattern = nameGenerator.namingPatterns[Math.round(Math.random() * (nameGenerator.namingPatterns.length - 1) )];
+    this.name = '';
+    let randPattern = nameData.namingPatterns[Math.round(Math.random() * (nameData.namingPatterns.length - 1) )];
     for(let i = 0; i < randPattern.length; i++){
         let currentType = randPattern[i];
         if (currentType === 'two'){
-            nameGenerator.name += nameGenerator.nameLib.twos[Math.round(Math.random() * (nameGenerator.nameLib.twos.length - 1) )];
+            this.name += nameData.nameLib.twos[Math.round(Math.random() * (nameData.nameLib.twos.length - 1) )];
         }
         else if(currentType === 'three'){
-            nameGenerator.name += nameGenerator.nameLib.threes[Math.round(Math.random() * (nameGenerator.nameLib.threes.length - 1) )];
+            this.name += nameData.nameLib.threes[Math.round(Math.random() * (nameData.nameLib.threes.length - 1) )];
         }
         else if(currentType === 'mid'){
-            nameGenerator.name += nameGenerator.nameLib.mids[Math.round(Math.random() * (nameGenerator.nameLib.mids.length - 1) )];
+            this.name += nameData.nameLib.mids[Math.round(Math.random() * (nameData.nameLib.mids.length - 1) )];
         }
         else if(currentType === 0){
-            nameGenerator.name += '_';
+            this.name += '_';
         }
     }
-    return nameGenerator.name;
+    return this.name;
 }
 // Capitalize Name (samo privremeno dok ne nades minimalnije rjesenje)
 nameGenerator.capitalizeAndRemoveUnderscores = function(name){
@@ -46,15 +46,15 @@ nameGenerator.decapitalizaAndRemoveSpaces = function(name){
 }
 nameGenerator.calculateNumberOfPossibleOriginalNames = function(){
     let numOfPossibleNames = 0;
-    for(let i = 0; i < nameGenerator.namingPatterns.length; i++){
+    for(let i = 0; i < nameData.namingPatterns.length; i++){
         let patternReturnNum = 1;
-        for(let j = 0; j < nameGenerator.namingPatterns[i].length; j++){
-            if (nameGenerator.namingPatterns[i][j] === 'two'){
-                patternReturnNum *= nameGenerator.nameLib.twos.length; }
-            else if(nameGenerator.namingPatterns[i][j] === 'three'){
-                patternReturnNum *= nameGenerator.nameLib.threes.length; }
-            else if(nameGenerator.namingPatterns[i][j] === 'mid'){
-                patternReturnNum *= nameGenerator.nameLib.mids.length; } 
+        for(let j = 0; j < nameData.namingPatterns[i].length; j++){
+            if (nameData.namingPatterns[i][j] === 'two'){
+                patternReturnNum *= nameData.nameLib.twos.length; }
+            else if(nameData.namingPatterns[i][j] === 'three'){
+                patternReturnNum *= nameData.nameLib.threes.length; }
+            else if(nameData.namingPatterns[i][j] === 'mid'){
+                patternReturnNum *= nameData.nameLib.mids.length; } 
         }
         numOfPossibleNames += patternReturnNum; 
     }
