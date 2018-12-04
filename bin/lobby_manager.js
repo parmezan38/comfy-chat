@@ -15,11 +15,11 @@ lobbyManager.checkIfRoomFull = room => {
     }
 };
 lobbyManager.getRoom = roomId => {
-    for (let i = 0; i < lobby.rooms.length; i++) {
-        if (lobby.rooms[i].id === roomId) {
-            return lobby.rooms[i];
+    lobby.rooms.forEach(lobbyRoom => {
+        if (lobbyRoom.id === roomId) {
+            return lobbyRoom;
         }
-    };
+    });
 };
 lobbyManager.addUserToRoom = (roomId, userName) => {
     let room = this.getRoom(roomId);
