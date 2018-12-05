@@ -8,7 +8,8 @@ const passwordGenerator = {
         return password;
     },
     calculateNumberOfPossibleOriginalPasswords: function(){
-        console.log(passwordData.nameLib.pre1.length * passwordData.nameLib.pre2.length * passwordData.nameLib.word.length);
+        let nameLib = passwordData.nameLib;
+        console.log(nameLib.pre1.length * nameLib.pre2.length * nameLib.word.length);
     }
 };
 module.exports = passwordGenerator;

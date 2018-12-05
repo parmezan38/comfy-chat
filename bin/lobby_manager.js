@@ -2,45 +2,37 @@ const lobby = require('./data/lobby_data');
 
 let lobbyManager = {};
 
-lobbyManager.giveLobbyData = () => {
+lobbyManager.giveLobbyData = function(){
     return lobby.rooms;
 };
-lobbyManager.checkIfRoomFull = room => {
-    if(room !== null){
-        if(room.users.length >= room.maxUsers){
-            return true;
-        } else {
-            return false;
-        }
+lobbyManager.checkIfRoomFull = function(room){
+    if(!room){
+        return room.users.length >= room.maxUsers ? true : false;
     }
 };
-lobbyManager.getRoom = roomId => {
-    lobby.rooms.forEach(lobbyRoom => {
-        if (lobbyRoom.id === roomId) {
-            return lobbyRoom;
+lobbyManager.getRoom = function(roomId){
+    for (let i = 0; i < lobby.rooms.length; i++) {
+        if (lobby.rooms[i].id === roomId) {
+            return lobby.rooms[i];
         }
-    });
+    };
 };
-lobbyManager.addUserToRoom = (roomId, userName) => {
+lobbyManager.addUserToRoom = function(roomId, userName){
     let room = this.getRoom(roomId);
     if(!this.checkIfRoomFull(room) && !room.users.includes(userName) ){
         room.users.push(userName);
     }
 };
-lobbyManager.removeUserFromRoom = (roomId, userName) => {
+lobbyManager.removeUserFromRoom = function(roomId, userName){
     let room = this.getRoom(roomId);
     let indexOfUser = room.users.indexOf(userName);
     if(indexOfUser >= 0){
         room.users.splice(indexOfUser, 1);
     }
 };
-lobbyManager.checkIfUserExistsInRoom = (roomId, userName) => {
+lobbyManager.checkIfUserExistsInRoom = function(roomId, userName){
     let room = this.getRoom(roomId);
-    if(room.users.includes(userName)){
-        return true;
-    } else {
-        return false;
-    }
+    return room.users.includes(userName) ? true : false;
 };
 module.exports = lobbyManager;
 

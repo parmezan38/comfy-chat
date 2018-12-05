@@ -14,20 +14,15 @@ const nameGenerator = {
     },
     generateName: function(){
         this.name = '';
-        let randPattern = nameData.namingPatterns[Math.round(Math.random() * (nameData.namingPatterns.length - 1) )];
+        let namingPatterns =  nameData.namingPatterns;
+        let randPattern = namingPatterns[Math.round(Math.random() * (namingPatterns.length - 1) )];
+        let nameLib = nameData.nameLib;
         randPattern.forEach(currentType => {
-            if (currentType === 'two'){
-                this.name += nameData.nameLib.twos[Math.round(Math.random() * (nameData.nameLib.twos.length - 1) )];
-            }
-            else if(currentType === 'three'){
-                this.name += nameData.nameLib.threes[Math.round(Math.random() * (nameData.nameLib.threes.length - 1) )];
-            }
-            else if(currentType === 'mid'){
-                this.name += nameData.nameLib.mids[Math.round(Math.random() * (nameData.nameLib.mids.length - 1) )];
-            }
-            else if(currentType === 0){
-                this.name += '_';
-            }
+            let namePiece = currentType === 'two' ? nameLib.twos[Math.round(Math.random() * (nameLib.twos.length - 1) ) ] 
+                            : currentType === 'three' ? nameLib.threes[Math.round(Math.random() * (nameLib.threes.length - 1) ) ]
+                            : currentType === 'mid' ? nameLib.mids[Math.round(Math.random() * (nameLib.mids.length - 1) ) ]
+                            : '_';
+            this.name += namePiece;
         });
         return this.name;
     },
@@ -45,13 +40,12 @@ const nameGenerator = {
         let numOfPossibleNames = 0;
         nameData.namingPatterns.forEach(namingPattern => {
             let patternReturnNum = 1;
+            let nameLib = nameData.nameLib;
             namingPattern.forEach(patternPart => {
-                if (patternPart === 'two'){
-                    patternReturnNum *= nameData.nameLib.twos.length; }
-                else if(patternPart === 'three'){
-                    patternReturnNum *= nameData.nameLib.threes.length; }
-                else if(patternPart === 'mid'){
-                    patternReturnNum *= nameData.nameLib.mids.length; } 
+                let num =   patternPart === 'two' ? nameLib.twos.length
+                            : patternPart === 'three' ? nameLib.threes.length
+                            : nameLib.mids.length;
+                patternReturnNum *= num;
             });
             numOfPossibleNames += patternReturnNum; 
         });
@@ -61,12 +55,7 @@ const nameGenerator = {
         return db.user.findOne({ 
             attributes: ['name'],
             where: {name: name} }
-        ).then(found => {
-            if (found !== null) {
-                return true;
-            }
-            return false;
-        });
+        ).then(found => { return found !== null ? true : false; });
     }
 };
 module.exports = nameGenerator;
