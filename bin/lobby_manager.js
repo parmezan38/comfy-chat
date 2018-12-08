@@ -7,7 +7,7 @@ lobbyManager.giveLobbyData = function(){
 };
 lobbyManager.checkIfRoomFull = function(room){
     if(!room){
-        return room.users.length >= room.maxUsers ? true : false;
+        return room.users.length >= room.maxUsers;
     }
 };
 lobbyManager.getRoom = function(roomId){
@@ -32,8 +32,6 @@ lobbyManager.removeUserFromRoom = function(roomId, userName){
 };
 lobbyManager.checkIfUserExistsInRoom = function(roomId, userName){
     let room = this.getRoom(roomId);
-    return room.users.includes(userName) ? true : false;
+    return room.users.includes(userName);
 };
 module.exports = lobbyManager;
-
-

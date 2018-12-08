@@ -20,7 +20,7 @@ router.get('/chat/:room', middleware.isLoggedIn, function(req, res){
             res.redirect('/chat');
         } else {
             lobbyManager.addUserToRoom(room.id, userInfo.username);
-            res.render('chat/room', {room: room});
+            res.render('chat/room', { room });
         }
     } else {
         res.redirect('/chat');

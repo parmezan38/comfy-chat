@@ -40,8 +40,6 @@ socket.on('chat', data => {
     addMessageToOutput(data);
     outputWindow.scrollTop = outputWindow.scrollHeight
 });
-socket.on('disconnected', () => {
-});
 
 function submitMessage(){
     if(message.value.length > 0){

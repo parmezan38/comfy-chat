@@ -9,7 +9,7 @@ let savedUserInfo = {},
     shownUserInfo = {};
 
 // Generate New Username And Password
-router.get('/new', function(req, res){
+router.get('/new', (req, res) => {
     if(savedUserInfo.userName && savedUserInfo.userPassword){
         nameGenerator.findIfNameExistsInDB(savedUserInfo.userName).then(doesExist => {
             if(doesExist){
@@ -17,7 +17,7 @@ router.get('/new', function(req, res){
                     res.redirect('new');
                 });
             } else {
-                res.render('new', {shownUserInfo: shownUserInfo});
+                res.render('new', { shownUserInfo });
             }
         })
     }  
@@ -31,26 +31,26 @@ router.get('/new', function(req, res){
 });
 
 // Create New Username only
-router.get('/newname', function(req, res){
+router.get('/newname', (req, res) => {
     createNewName().then(() => {
         res.redirect('new');
     });
 });
 
 // Create New Password only
-router.get('/newpassword', function(req, res){
+router.get('/newpassword', (req, res) => {
     createNewPassword();
     res.redirect('new');
 });
 
 // Create New Color only
-router.get('/newcolor', function(req, res){
+router.get('/newcolor', (req, res) => {
     createNewColors();
     res.redirect('new');
 });
 
 // Confirm and Submit New Account 
-router.post('/new', function(req, res){
+router.post('/new', (req, res) => {
     nameGenerator.findIfNameExistsInDB(savedUserInfo.userName).then(doesExist => {
         if(doesExist){
             res.send('Error. Username already exists in database');
@@ -60,8 +60,8 @@ router.post('/new', function(req, res){
                 password: savedUserInfo.userPassword,
                 color1: savedUserInfo.color1,
                 color2: savedUserInfo.color2
-            }).then(function(){
-                res.render('saved', {shownUserInfo: shownUserInfo});
+            }).then(() => {
+                res.render('saved', { shownUserInfo });
             });
         }
     })

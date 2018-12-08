@@ -3,15 +3,12 @@ const   express = require('express'),
         IP = process.env.IP || '127.0.0.1',
         PORT = process.env.PORT || 8080,
         bodyParser = require('body-parser'),
-        db = require('./models/index'),
         session = require('express-session'),
         passport = require('passport'),
-        socket = require('socket.io'),
         flash = require('connect-flash'),
-        sanitizeHtml = require('sanitize-html'),
-        lobbyManager = require('./bin/lobby_manager'),
-        nameGenerator = require('./bin/name_generator'),
-        colorGenerator = require('./bin/color_generator');
+        socketManager = require('./bin/socket_manager'),
+        middleware = require('./middleware/index');
+
 
 // Route Requiring
 const   indexRoutes = require('./routes/index'),
@@ -36,43 +33,8 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-app.use((req, res, next) => {
-    if(req.user){
-        res.locals.userInfo = {
-            username: nameGenerator.capitalizeAndRemoveUnderscores(req.user),
-            color1: colorGenerator.deconstructColorCode(req.session.color1),
-            color2: colorGenerator.deconstructColorCode(req.session.color2)
-        };
-    } else {
-        res.locals.userInfo = null;
-    }
-    res.locals.success = req.flash('success');
-    res.locals.error = req.flash('error');
-    next();
-});
-
-const io = socket(server);
-io.of('/chat').on('connection', socket => {
-    socket.on('joinRoom', data => {
-        socket.username = data.userInfo.username;
-        socket.room = data.room.id; 
-        socket.join(data.room.id);
-    });
-    socket.on('chat', data => {
-        data.message = sanitizeHtml(data.message, { allowedTags: [], allowedAttributes: [] });
-        io.of('/chat').in(data.room.id).emit('chat', data);
-    });
-    socket.on('disconnect', () => {
-        lobbyManager.removeUserFromRoom(socket.room, socket.username);
-    });
-});
-
-// Sequelize Connection Test
-db.sequelize.authenticate().then(() => {
-    console.log('Database connection has been established successfully.');
-    }).catch(err => {
-    console.error('Unable to connect to the database:', err);
-});
+app.use(middleware.stoerUserInfoToLocacs);
+socketManager(server);
 
 // Routes
 app.use(indexRoutes);
@@ -81,7 +43,3 @@ app.use(chatRoutes);
 app.get('*', function(req, res){
     res.send('Page does not exist');
 });
-
-
-
-

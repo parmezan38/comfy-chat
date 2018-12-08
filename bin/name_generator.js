@@ -54,7 +54,7 @@ const nameGenerator = {
     findIfNameExistsInDB: function(name){
         return db.user.findOne({ 
             attributes: ['name'],
-            where: {name: name} }
+            where: { name } }
         ).then(found => { return found !== null ? true : false; });
     }
 };
