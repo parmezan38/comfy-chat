@@ -9,21 +9,21 @@ module.exports = {
         unique: true,
         notNull: true,
         validate: {
-            notEmpty: true
+          notEmpty: true
         }
       },
       password: {
         type: Sequelize.STRING,
         notNull: true,
         validate: {
-            notEmpty: true
+          notEmpty: true
         }
       },
       color1: {
         type: Sequelize.STRING
       },
       color2: {
-          type: Sequelize.STRING
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -35,7 +35,7 @@ module.exports = {
       }
     });
   },
-  down: function(queryInterface, Sequelize) {
+  down: function (queryInterface, Sequelize) {
     return queryInterface.dropTable('users');
   }
 };

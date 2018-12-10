@@ -1,0 +1,9 @@
+{
+  "extends": "standard",
+  "rules": {
+    "one-var": [2, "consecutive"],
+    "semi": ["error", "always"],
+    "indent": [2, 2, { "VariableDeclarator": { "var": 2, "let": 2, "const": 3 } }],
+    "env": { "es6": true }
+  }
+}

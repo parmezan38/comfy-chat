@@ -1,14 +1,14 @@
 'use strict';
-const fs = require('fs');
-const path = require('path');
-const Sequelize = require('sequelize');
-const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.json')[env];
-const sequelize = new Sequelize(config.database, config.username, config.password, {
-  dialect: 'postgres',
-  operatorsAliases: false
-});
+const fs = require('fs'),
+      path = require('path'),
+      Sequelize = require('sequelize'),
+      basename = path.basename(__filename),
+      env = process.env.NODE_ENV || 'development',
+      config = require(path.join(__dirname, '/../config/config.json'))[env],
+      sequelize = new Sequelize(config.database, config.username, config.password, {
+        dialect: 'postgres',
+        operatorsAliases: false
+      });
 const db = {
   user: sequelize['import']('./users')
 };
@@ -23,7 +23,6 @@ fs
     db[model.name] = model;
   });
 
-  
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
@@ -34,7 +33,7 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 db.sequelize.authenticate().then(() => {
   console.log('Database connection has been established successfully.');
-  }).catch(err => {
+}).catch(err => {
   console.error('Unable to connect to the database:', err);
 });
 
