@@ -10,7 +10,7 @@ module.exports = {
             res.render('login');            
         }
     },
-    stoerUserInfoToLocacs: function(req, res, next){
+    storeUserInfoToLocals: function(req, res, next){
         if(req.user){
             res.locals.userInfo = {
                 username: nameGenerator.capitalizeAndRemoveUnderscores(req.user),

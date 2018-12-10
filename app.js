@@ -33,7 +33,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-app.use(middleware.stoerUserInfoToLocacs);
+app.use(middleware.storeUserInfoToLocals);
 socketManager(server);
 
 // Routes
