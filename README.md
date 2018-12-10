@@ -31,3 +31,8 @@ Migrate the database:
 Start the server:
 
 ```node app.js```
+
+Inside /bin/data/lobby_data is an object called lobby, which you can use to add more data for your chat lobby.
+The rooms array inside that lobby object is used to make chat rooms and you can edit them to your personal taste.
+
+To change user name and password generation check [NoSpyAcc](https://github.com/parmezan38/nospyacc) for more information.
