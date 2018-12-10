@@ -12,14 +12,10 @@ router.get('/chat', middleware.isLoggedIn, function(req, res){
 router.get('/chat/:room', middleware.isLoggedIn, function(req, res){
     let room = lobbyManager.getRoom(req.params.room);
     if(!lobbyManager.checkIfRoomFull(room)){
-        let userInfo = {};
-        userInfo.username = nameGenerator.capitalizeAndRemoveUnderscores(req.user);
-        userInfo.color1 = colorGenerator.deconstructColorCode(req.session.color1);
-        userInfo.color2 = colorGenerator.deconstructColorCode(req.session.color2);
-        if(lobbyManager.checkIfUserExistsInRoom(room.id, userInfo.username)){
+        if(lobbyManager.checkIfUserExistsInRoom(room.id, res.locals.userInfo)){
             res.redirect('/chat');
         } else {
-            lobbyManager.addUserToRoom(room.id, userInfo.username);
+            lobbyManager.addUserToRoom(room.id, res.locals.userInfo);
             res.render('chat/room', { room });
         }
     } else {
