@@ -51,12 +51,11 @@ const nameGenerator = {
     });
     console.log(numOfPossibleNames);
   },
-  findIfNameExistsInDB: function (name) {
+  findIfNameExistsInDB: function(name) {
     return db.user.findOne({
       attributes: ['name'],
       where: { name }
-    }
-    )
+    })
       .then(found => (found !== null));
   }
 };
