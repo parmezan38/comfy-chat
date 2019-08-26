@@ -1,108 +1,108 @@
 body {
-    background-color: rgb(53, 70, 75);
+  background-color: rgb(53, 70, 75);
 }
 #flash {
-    padding-top: 5px;
+  padding-top: 5px;
 }
 #content-body {
-    padding-top: 5px;
+  padding-top: 5px;
 }
 #main-container {
-    background-color: rgb(248, 249, 250);
+  background-color: rgb(248, 249, 250);
 }
 #main-chat-container {
-    border-radius: 4.8px;
-    background-color: rgb(248, 249, 250);
-    padding-top: 8px;
-    padding-bottom: 8px;
+  border-radius: 4.8px;
+  background-color: rgb(248, 249, 250);
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 #rooms {
-    width: 50%;
+  width: 50%;
 }
 #rooms span {
-    width: 100%;
-    max-width: 250px;
-    padding: 0% 8% 0% 8%;
-    text-align: center;
+  width: 100%;
+  max-width: 250px;
+  padding: 0% 8% 0% 8%;
+  text-align: center;
 }
 #rooms .btn {
-    float: right;
-    width: 100%;
-    max-width: 150px;
+  float: right;
+  width: 100%;
+  max-width: 150px;
 }
 #color-combination {
-    width: 3.5em;
-    height: 3.5em;
-    border-radius: 5px;
-    position: relative;
+  width: 3.5em;
+  height: 3.5em;
+  border-radius: 5px;
+  position: relative;
 }
 #color-combination div{
-    border-radius: 38%;
-    position: absolute;
+  border-radius: 38%;
+  position: absolute;
 }
 #color1 {
-    width: 3.5em;
-    height: 3.5em;
+  width: 3.5em;
+  height: 3.5em;
 }
 #color2 {
-    margin: auto;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 2em;
-    height: 2em;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 2em;
+  height: 2em;
 }
 #word-counter {
-    position: absolute;
-    font-size: 0.8em;
-    color: grey;
-    margin: auto;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 2em;
-    height: 2em;
-    z-index: 100;
+  position: absolute;
+  font-size: 0.8em;
+  color: grey;
+  margin: auto;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 2em;
+  height: 2em;
+  z-index: 100;
 }
 #output-window {
-    background-color: rgb(255, 255, 255);
-    border: solid 1px;
-    border-color: rgb(206, 212, 218);
-    border-radius: 4px;
-    margin-bottom: 5px;
-    font-size: 14px;
-    list-style-type: none;
-    height: 460px;
-    overflow-y: scroll;
+  background-color: rgb(255, 255, 255);
+  border: solid 1px;
+  border-color: rgb(206, 212, 218);
+  border-radius: 4px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  list-style-type: none;
+  height: 460px;
+  overflow-y: scroll;
 }
 #message {
-    resize: none;
+  resize: none;
 }
 #send {
-    border: 0;
-    border-radius: 0 4px 4px 0;
+  border: 0;
+  border-radius: 0 4px 4px 0;
 }
 .top-container {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 .mid {
-    width: 50%;
-    margin: auto;  
+  width: 50%;
+  margin: auto;  
 }
 .user-chat-name {
-    padding: 3px 6px;
-    border-radius: 35%;
+  padding: 3px 6px;
+  border-radius: 35%;
 }
 .text-show-field {
-    width: 10em;
+  width: 10em;
 }
 .input-container {
-    margin: 0%;
+  margin: 0%;
 }
 .chat-line {
-    word-wrap: break-word;
+  word-wrap: break-word;
 }
 .empty-mid-row {
-    height: 10px;
+  height: 10px;
 }

@@ -1,8 +1,8 @@
-const socket = require('socket.io'),
-      sanitizeHtml = require('sanitize-html'),
-      lobbyManager = require('./lobby_manager');
+const socket = require('socket.io');
+const sanitizeHtml = require('sanitize-html');
+const lobbyManager = require('./lobby_manager');
 
-module.exports = function (server) {
+module.exports = server => {
   const io = socket(server);
   io.of('/chat').on('connection', socket => {
     socket.on('joinRoom', ({ userInfo, room }) => {

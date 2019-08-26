@@ -1,16 +1,14 @@
 // Middleware
-const nameGenerator = require('../bin/name_generator'),
-      colorGenerator = require('../bin/color_generator');
+const nameGenerator = require('../bin/name_generator');
+const colorGenerator = require('../bin/color_generator');
+
 module.exports = {
-  isLoggedIn: function (req, res, next) {
-    if (req.isAuthenticated()) {
-      return next();
-    } else {
-      req.flash('error', 'Wrong username and/or password');
-      res.render('login');
-    }
+  isLoggedIn: (req, res, next) => {
+    if (req.isAuthenticated()) return next();
+    req.flash('error', 'Wrong username and/or password');
+    res.render('login');
   },
-  storeUserInfoToLocals: function (req, res, next) {
+  storeUserInfoToLocals: (req, res, next) => {
     if (req.user) {
       res.locals.userInfo = {
         username: nameGenerator.capitalizeAndRemoveUnderscores(req.user),

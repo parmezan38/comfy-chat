@@ -1,37 +1,32 @@
 const lobby = require('./data/lobby_data');
 
-let lobbyManager = {};
-
-lobbyManager.giveLobbyData = function () {
-  return lobby.rooms;
-};
-lobbyManager.checkIfRoomFull = function (room) {
-  if (!room) {
-    return room.users.length >= room.maxUsers;
-  }
-};
-lobbyManager.getRoom = function (roomId) {
-  for (let i = 0; i < lobby.rooms.length; i++) {
-    if (lobby.rooms[i].id === roomId) {
-      return lobby.rooms[i];
+const lobbyManager = {
+  giveLobbyData: function () { return lobby.rooms; },
+  checkIfRoomFull: function (room) {
+    if (!room) return room.users.length >= room.maxUsers;
+  },
+  getRoom: function (id) {
+    for (let i = 0; i < lobby.rooms.length; i++) {
+      if (lobby.rooms[i].id === id) {
+        return lobby.rooms[i];
+      }
+    };
+  },
+  addUserToRoom: function (id, userName) {
+    const room = this.getRoom(id);
+    if (!this.checkIfRoomFull(room) && !room.users.includes(userName)) {
+      room.users.push(userName);
     }
-  };
-};
-lobbyManager.addUserToRoom = function (roomId, userName) {
-  let room = this.getRoom(roomId);
-  if (!this.checkIfRoomFull(room) && !room.users.includes(userName)) {
-    room.users.push(userName);
+  },
+  removeUserFromRoom: function (id, userName) {
+    const room = this.getRoom(id);
+    const indexOfUser = room.users.indexOf(userName);
+    if (indexOfUser >= 0) room.users.splice(indexOfUser, 1);
+  },
+  checkIfUserExistsInRoom: function (id, userName) {
+    const room = this.getRoom(id);
+    return room.users.includes(userName);
   }
 };
-lobbyManager.removeUserFromRoom = function (roomId, userName) {
-  let room = this.getRoom(roomId),
-      indexOfUser = room.users.indexOf(userName);
-  if (indexOfUser >= 0) {
-    room.users.splice(indexOfUser, 1);
-  }
-};
-lobbyManager.checkIfUserExistsInRoom = function (roomId, userName) {
-  let room = this.getRoom(roomId);
-  return room.users.includes(userName);
-};
+
 module.exports = lobbyManager;

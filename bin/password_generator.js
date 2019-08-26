@@ -1,4 +1,5 @@
 const passwordData = require('./data/password_pieces');
+
 const passwordGenerator = {
   generatePassword: function () {
     let password = '';
@@ -8,7 +9,7 @@ const passwordGenerator = {
     return password;
   },
   calculateNumberOfPossibleOriginalPasswords: function () {
-    let nameLib = passwordData.nameLib;
+    const nameLib = passwordData.nameLib;
     console.log(nameLib.pre1.length * nameLib.pre2.length * nameLib.word.length);
   }
 };

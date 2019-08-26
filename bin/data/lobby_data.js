@@ -1,4 +1,4 @@
-let lobby = {
+const lobby = {
   rooms: [
     { name: 'Room 1', maxUsers: 4, users: [], id: 'room001' },
     { name: 'Room 2', maxUsers: 4, users: [], id: 'room002' },

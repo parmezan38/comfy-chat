@@ -11,8 +11,8 @@ router.get('/', function (req, res) {
 });
 // Login
 router.post('/login', function (req, res) {
-  let username = nameGenerator.decapitalizaAndRemoveSpaces(req.body.username.trim()),
-      password = req.body.password.toLowerCase();
+  const username = nameGenerator.decapitalizaAndRemoveSpaces(req.body.username.trim());
+  const password = req.body.password.toLowerCase();
   db.user.findOne({ where: { name: username } }).then(user => {
     if (!user) {
       req.flash('error', 'Wrong username and/or password');
@@ -21,14 +21,14 @@ router.post('/login', function (req, res) {
       req.flash('error', 'Wrong username and/or password');
       res.redirect('/login');
     } else {
-      let userId = user.dataValues.name;
+      const userId = user.dataValues.name;
       req.session.color1 = user.dataValues.color1;
       req.session.color2 = user.dataValues.color2;
       req.login(userId, err => {
         if (err) {
           console.log(err);
         }
-        let upperCaseUsername = nameGenerator.capitalizeAndRemoveUnderscores(username);
+        const upperCaseUsername = nameGenerator.capitalizeAndRemoveUnderscores(username);
         req.flash('success', 'You have logged in as ' + upperCaseUsername + '.');
         res.redirect('/chat');
       });

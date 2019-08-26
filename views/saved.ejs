@@ -1,24 +1,22 @@
 <%include partials/header%>
-
 <div class="container">
-    <div id="main-container" class="jumbotron">
-        <h2 class="text-center">Account Created!</h2>
-        <hr class="my-4">
-        <div class="container mid">
-            <%if(shownUserInfo) {%>
-                <p>Account with Username: <strong><%=shownUserInfo.userName%></strong> and
-                    Password: <strong><%=shownUserInfo.userPassword%></strong> has been created in the database.
-                <p><strong>
-                    Please remember your Username and Password, because there is no changing them afterwards.</p>
-                </strong></p>    
-            <%}%>
-            <div class="text-center">
-                <form class="form-inline" action="/chat" method="GET">
-                    <button class="btn btn-primary mb-2">Go to Chat Lobby</button>
-                </form>
-            </div>
-        </div>
+  <div id="main-container" class="jumbotron">
+    <h2 class="text-center">Account Created!</h2>
+    <hr class="my-4">
+    <div class="container mid">
+      <%if(shownUserInfo) {%>
+        <p>Account with Username: <strong><%=shownUserInfo.userName%></strong> and
+          Password: <strong><%=shownUserInfo.userPassword%></strong> has been created in the database.
+        <p><strong>
+          Please remember your Username and Password, because there is no changing them afterwards.</p>
+        </strong></p>    
+      <%}%>
+      <div class="text-center">
+        <form class="form-inline" action="/chat" method="GET">
+          <button class="btn btn-primary mb-2">Go to Chat Lobby</button>
+        </form>
+      </div>
     </div>
+  </div>
 </div>
-
 <%include partials/footer%>
